@@ -1,6 +1,6 @@
 {
   "name": "array-correl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generates array with correlated set of numbers",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,9 @@
   "keywords": [
     "array",
     "correlated",
-    "related"
+    "related",
+    "pair",
+    "random"
   ],
   "author": "Bo Ericsson <bo@boe.net> (http://www.github.com/boeric)",
   "license": "MIT",

@@ -6,7 +6,7 @@
 
 ###Generate###
 
-array.correl.**generate**(count, [correlation, [mean, [deviation]]])
+array-correl.**generate**(count, [correlation, [mean, [deviation]]])
 
 The **generate** function generates an array of length **count** with correlated sets of numbers in the `{ x: xValue, y: yValue }` format. Optionally, the following parameters can be specified:
 
