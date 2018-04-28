@@ -1,6 +1,6 @@
 {
   "name": "array-correl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generates array with correlated set of numbers",
   "main": "index.js",
   "repository": {
