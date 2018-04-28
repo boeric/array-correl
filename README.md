@@ -1,10 +1,10 @@
-##array-correl
+## array-correl
 
 **Installation**
 
 `npm install array-correl`
 
-###Generate
+### Generate
 
 array-correl.**generate**(count, [correlation, [mean, [deviation]]])
 
@@ -21,7 +21,7 @@ If the correlation coefficient is not specified, it defaults to 0.7; if mean is 
 If no **count** argument is passed, a **ReferenceError** is thrown. If any passed argument is **not a number** (or cannot be coerced to a number), a **TypeError** is thrown.
 
 
-###Inspect
+### Inspect
 
 array-correl.**inspect**(array)
 
