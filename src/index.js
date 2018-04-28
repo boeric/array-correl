@@ -1,17 +1,17 @@
 "use strict";
+/* eslint-disable no-console, no-redeclare */
 
 /*
  * array-correl
  */
 
-var d3 = require("d3")
+var d3 = require("d3");
 
 module.exports = {
 
   generate: function(count, correlation, mean, deviation) {
 
     // validate inputs
-
     if (!count) { throw new ReferenceError('Missing count argument'); }
 
     var params = [
@@ -23,58 +23,48 @@ module.exports = {
     params.forEach(function(d) {
       if (d.param != undefined) {
         if (isNaN(parseFloat(d.param)) || !isFinite(d.param)) {
-          throw new TypeError('Invalid ' + d.name + ' argument')
+          throw new TypeError('Invalid ' + d.name + ' argument');
         }
       }
     });
 
-    // initialize variables
-
+    // Initialize variables
     var r = correlation || 0.7;
     var m = mean || 0;
     var d = deviation || 1;
     var nD = d3.random.normal(m, d);
     var data = [];
 
-    // generate correlated numbers
-
-    // source: http://www.sitmo.com/article/generating-correlated-random-numbers/
+    // Generate correlated numbers
+    // Source: http://www.sitmo.com/article/generating-correlated-random-numbers/
     d3.range(count).forEach(function(d) {
-
       var x1 = nD();
       var x2 = nD();
       var y1 = r * x1 + Math.sqrt(1 - r * r) * x2;
 
       data.push({ x: x1, y: y1 });
-    })
+    });
 
-    // return result
-
+    // Return result
     return data;
-
   },
 
-  // analyze the passed array
+  // Analyze the passed array
   inspect: function(input) {
 
-    // validate input
+    // Validate input
     if (!Array.isArray(input)) {
-      throw new ReferenceError('Missing input array argument')
-    };
-
-    if (Array.isArray(input[0]) && input[0].length != 2) {
-      throw new TypeError("Array length is not 2 at index 0 of input array")
+      throw new ReferenceError('Missing input array argument');
+    } else if (Array.isArray(input[0]) && input[0].length != 2) {
+      throw new TypeError("Array length is not 2 at index 0 of input array");
+    } else if (!Array.isArray() && !("x" in input[0] && "y" in input[0])) {
+      throw new TypeError("No x or y property at object at index 0 of input array");
     }
 
-    if (!Array.isArray() && !("x" in input[0] && "y" in input[0])) {
-      throw new TypeError("No x or y property at object at index 0 of input array")
-    }
-
-
-    // get local copy of array
+    // Get local copy of array
     var data = input.slice();
 
-    // if input is in array-in-array format (not object-in-array), convert to object-in-array
+    // If input is in array-in-array format (not object-in-array), convert to object-in-array
     if (Array.isArray(input[0]) && data[0].length == 2) {
       data = [];
       for (var i = 0; i < input.length; i++) {
@@ -85,30 +75,28 @@ module.exports = {
       }
     }
 
-    // create x and y arrays
+    // Create x and y arrays
     var x = [];
     var y = [];
     data.forEach(function(d) {
       x.push(d.x);
       y.push(d.y);
-    })
+    });
 
     return {
       r: getPearsonCorrelation(x, y),
 
-      xDeviation: d3.deviation(data, function(d) { return d.x }),
-      yDeviation: d3.deviation(data, function(d) { return d.y }),
+      xDeviation: d3.deviation(data, function(d) { return d.x; }),
+      yDeviation: d3.deviation(data, function(d) { return d.y; }),
 
-      xMean: d3.mean(data, function(d) { return d.x }),
-      yMean: d3.mean(data, function(d) { return d.y }),
+      xMean: d3.mean(data, function(d) { return d.x; }),
+      yMean: d3.mean(data, function(d) { return d.y; }),
 
-      xExtent: d3.extent(data, function(d) { return d.x }),
-      yExtent: d3.extent(data, function(d) { return d.y })
-    }
-
+      xExtent: d3.extent(data, function(d) { return d.x; }),
+      yExtent: d3.extent(data, function(d) { return d.y; })
+    };
   }
-
-}
+};
 
 
 // compute correlation coefficient
@@ -134,7 +122,7 @@ function getPearsonCorrelation(x, y) {
       xy.push(x[i] * y[i]);
       x2.push(x[i] * x[i]);
       y2.push(y[i] * y[i]);
-  };
+  }
 
   var sum_x = 0;
   var sum_y = 0;
@@ -148,7 +136,7 @@ function getPearsonCorrelation(x, y) {
       sum_xy += xy[i];
       sum_x2 += x2[i];
       sum_y2 += y2[i];
-  };
+  }
 
   var step1 = (shortestArrayLength * sum_xy) - (sum_x * sum_y);
   var step2 = (shortestArrayLength * sum_x2) - (sum_x * sum_x);
