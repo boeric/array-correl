@@ -1,7 +1,7 @@
 {
   "name": "array-correl",
-  "version": "0.0.4",
-  "description": "Generates array with correlated set of numbers",
+  "version": "0.1.1",
+  "description": "Computes correlation coefficient between two arrays, or generates desired distribution",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -12,10 +12,12 @@
   },
   "keywords": [
     "array",
+    "correlation coefficient",
     "correlated",
     "related",
     "pair",
-    "random"
+    "random",
+    "generate distribution"
   ],
   "author": "Bo Ericsson <bo@boe.net> (http://www.github.com/boeric)",
   "license": "MIT",

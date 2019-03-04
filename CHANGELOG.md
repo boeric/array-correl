@@ -1,3 +1,9 @@
+0.1.1
+- Further cleanup
+
+0.1.0
+- Version bump
+
 0.0.4
 - Further cleanup
 
