@@ -72,8 +72,11 @@ const d3 = require('d3');
 
   // Generate data distribution that conforms to the input specification
   function generate(count, correlation, mean, deviation) {
-    // Validate arguments
-    if (!count) { throw new ReferenceError('Missing count argument'); }
+    // Validate count
+    if (!count) {
+      throw new ReferenceError('Missing count argument');
+    }
+
     [
       { name: 'count',       param: count },
       { name: 'correlation', param: correlation },
