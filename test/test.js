@@ -70,13 +70,13 @@ describe('Generate', () => {
 
       it('should produce correct pearson correlation coefficient approximation', () => {
         const { r } = stats;
-        assert.deepEqual(true, approximatelyEqual(r, correlation, 0.01));
+        assert.deepEqual(true, approximatelyEqual(r, correlation, 0.03));
       });
 
       it('should produce correct deviation approximation', () => {
         const { xDeviation, yDeviation } = stats;
-        assert.deepEqual(true, approximatelyEqual(xDeviation, deviation, 0.02));
-        assert.deepEqual(true, approximatelyEqual(yDeviation, deviation, 0.02));
+        assert.deepEqual(true, approximatelyEqual(xDeviation, deviation, 0.03));
+        assert.deepEqual(true, approximatelyEqual(yDeviation, deviation, 0.03));
       });
 
       it('should produce correct min/max approximation', () => {
@@ -89,8 +89,53 @@ describe('Generate', () => {
 
       it('should produce correct mean approximation', () => {
         const { xMean, yMean } = stats;
-        assert.deepEqual(true, approximatelyEqual(xMean, mean, 0.02));
-        assert.deepEqual(true, approximatelyEqual(yMean, mean, 0.02));
+        assert.deepEqual(true, approximatelyEqual(xMean, mean, 0.04));
+        assert.deepEqual(true, approximatelyEqual(yMean, mean, 0.04));
+      });
+    });
+  });
+
+  describe('Test correlation 0.5, mean 1000, deviation 0.5', () => {
+    const count = 10000;
+    const correlation = 0.5;
+    const mean = 1000;
+    const deviation = 100;
+    let result;
+    let stats;
+
+    before(() => {
+      result = generate(count, correlation, mean, deviation);
+      stats = inspect(result);
+    });
+
+    describe('Should generate correlated pairs approximately conforming to spec', () => {
+      it('should generate an array of specified size', () => {
+        assert.deepEqual(result.length, count);
+      });
+
+      it('should produce correct pearson correlation coefficient approximation', () => {
+        const { r } = stats;
+        assert.deepEqual(true, approximatelyEqual(r, correlation, 0.03));
+      });
+
+      it('should produce correct deviation approximation', () => {
+        const { xDeviation, yDeviation } = stats;
+        assert.deepEqual(true, approximatelyEqual(xDeviation, deviation, 2));
+        assert.deepEqual(true, approximatelyEqual(yDeviation, deviation, 2));
+      });
+
+      it('should produce correct min/max approximation', () => {
+        const { xExtent, yExtent } = stats;
+        assert.deepEqual(true, approximatelyEqual(xExtent[0], mean, 600));
+        assert.deepEqual(true, approximatelyEqual(xExtent[1], mean, 600));
+        assert.deepEqual(true, approximatelyEqual(yExtent[0], mean, 600));
+        assert.deepEqual(true, approximatelyEqual(yExtent[1], mean, 600));
+      });
+
+      it('should produce correct mean approximation', () => {
+        const { xMean, yMean } = stats;
+        assert.deepEqual(true, approximatelyEqual(xMean, mean, 4));
+        assert.deepEqual(true, approximatelyEqual(yMean, mean, 4));
       });
     });
   });
