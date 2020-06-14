@@ -12,17 +12,22 @@
   },
   "keywords": [
     "array",
-    "correlation coefficient",
     "correlated",
-    "related",
+    "correlated pairs",
+    "correlation coefficient",
+    "generate distribution",
     "pair",
-    "random",
-    "generate distribution"
+    "pearson",
+    "pearson correlation",
+    "random"
   ],
-  "author": "Bo Ericsson <bo@boe.net> (http://www.github.com/boeric)",
+  "author": {
+    "name": "Bo Ericsson",
+    "url": "http://www.github.com/boeric"
+  },
   "license": "MIT",
   "dependencies": {
-    "d3": "^3.5.17"
+    "d3-array": "^2.4.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
