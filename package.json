@@ -8,7 +8,7 @@
     "url": "https://github.com/boeric/array-correl.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/mocha test -t 4000 --require test/chai.js"
   },
   "keywords": [
     "array",
@@ -23,5 +23,9 @@
   "license": "MIT",
   "dependencies": {
     "d3": "^3.5.17"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1"
   }
 }
