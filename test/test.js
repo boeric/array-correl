@@ -4,8 +4,7 @@
 const { generate, inspect } = require('../src/index.js');
 
 function approximatelyEqual(value, expected, tolerance) {
-  console.log(value, expected, expected - tolerance, expected + tolerance);
-  return false
+  // console.log(value, expected, expected - tolerance, expected + tolerance);
   return (value >= (expected - tolerance)) && (value <= (expected + tolerance));
 }
 
@@ -16,33 +15,27 @@ describe('Generate', () => {
     const mean = 100;
     const deviation = Number.MIN_VALUE;
     let result;
+    let stats;
 
     // Generate array with correlated pairs
     before(() => {
       result = generate(count, correlation, mean, deviation);
+      stats = inspect(result);
     });
 
-    it('should generate values with no distribution', () => {
-      // Inspect the result
-      const {
-        xDeviation,
-        yDeviation,
-        xExtent,
-        yExtent,
-        xMean,
-        yMean,
-      } = inspect(result);
-
+    describe('Should generate values with no distribution', () => {
       it('should generate an array of specified size', () => {
         assert.deepEqual(result.length, count);
       });
 
       it('should produce deviation of 0', () => {
+        const { xDeviation, yDeviation } = stats;
         expect(xDeviation).equal(0);
         expect(yDeviation).equal(0);
       });
 
       it('should produce constant min/max', () => {
+        const { xExtent, yExtent } = stats;
         expect(xExtent[0]).equal(mean);
         expect(xExtent[1]).equal(mean);
         expect(yExtent[0]).equal(mean);
@@ -50,6 +43,7 @@ describe('Generate', () => {
       });
 
       it('should produce constant mean', () => {
+        const { xMean, yMean } = stats;
         expect(xMean).equal(mean);
         expect(yMean).equal(mean);
       });
@@ -62,52 +56,42 @@ describe('Generate', () => {
     const mean = 100;
     const deviation = 1;
     let result;
+    let stats;
 
     before(() => {
       result = generate(count, correlation, mean, deviation);
+      stats = inspect(result);
     });
 
-    it('should generate correlated pairs approximately conforming to spec', () => {
-      // Inspect the result
-      const {
-        r,
-        // xDeviation,
-        // yDeviation,
-        // xExtent,
-        // yExtent,
-        // xMean,
-        // yMean,
-      } = inspect(result);
-      // console.log(inspect(result));
-
-      console.log(approximatelyEqual(r, correlation, 0.000000001));
-
+    describe('Should generate correlated pairs approximately conforming to spec', () => {
       it('should generate an array of specified size', () => {
         assert.deepEqual(result.length, count);
       });
 
       it('should produce correct pearson correlation coefficient approximation', () => {
+        const { r } = stats;
         assert.deepEqual(true, approximatelyEqual(r, correlation, 0.01));
       });
 
-      /*
       it('should produce correct deviation approximation', () => {
-        //assert(approximatelyEqual(xDeviation, deviation, 0.00000001));
-        //expect(approximatelyEqual(yDeviation, deviation, 0.01));
+        const { xDeviation, yDeviation } = stats;
+        assert.deepEqual(true, approximatelyEqual(xDeviation, deviation, 0.02));
+        assert.deepEqual(true, approximatelyEqual(yDeviation, deviation, 0.02));
       });
 
       it('should produce correct min/max approximation', () => {
-        // expect(xExtent[0]).equal(mean);
-        // expect(xExtent[1]).equal(mean);
-        // expect(yExtent[0]).equal(mean);
-        // expect(yExtent[1]).equal(mean);
+        const { xExtent, yExtent } = stats;
+        assert.deepEqual(true, approximatelyEqual(xExtent[0], mean, 6));
+        assert.deepEqual(true, approximatelyEqual(xExtent[1], mean, 6));
+        assert.deepEqual(true, approximatelyEqual(yExtent[0], mean, 6));
+        assert.deepEqual(true, approximatelyEqual(yExtent[1], mean, 6));
       });
 
       it('should produce correct mean approximation', () => {
-        // expect(xMean).equal(mean);
-        // expect(yMean).equal(mean);
+        const { xMean, yMean } = stats;
+        assert.deepEqual(true, approximatelyEqual(xMean, mean, 0.02));
+        assert.deepEqual(true, approximatelyEqual(yMean, mean, 0.02));
       });
-      */
     });
   });
 });
