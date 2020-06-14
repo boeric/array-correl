@@ -1,5 +1,5 @@
-/* eslint-disable camelcase, func-names, no-console, no-multi-spaces, no-param-reassign,
-  no-plusplus, no-shadow, object-curly-newline, wrap-iife */
+/* eslint-disable camelcase, func-names, no-console, no-param-reassign, no-plusplus,
+   no-shadow, object-curly-newline, wrap-iife */
 
 /* eslint-disable max-len */
 /**
@@ -83,7 +83,7 @@ const DEFAULT_DEVIATION = 1;
   }
 
   // Generate normal distribution
-  function randomNormal(mean = 0, dev = 1) {
+  function randomNormal(mean = DEFAULT_MEAN, dev = DEFAULT_DEVIATION) {
     return function () {
       let a;
       let b;
@@ -107,10 +107,10 @@ const DEFAULT_DEVIATION = 1;
     }
 
     [
-      { name: 'count',       param: count },
+      { name: 'count', param: count },
       { name: 'correlation', param: correlation },
-      { name: 'mean',        param: mean },
-      { name: 'deviation',   param: deviation },
+      { name: 'mean', param: mean },
+      { name: 'deviation', param: deviation },
     ].forEach((d) => {
       if (d.param !== undefined) {
         if (Number.isNaN(parseFloat(d.param)) || !Number.isFinite(d.param)) {
