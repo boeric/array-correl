@@ -1,17 +1,22 @@
-/*
- * array-correl
- * Version: 0.1.0
- * Purpose: Computes correlation coefficient between two arrays, or generates desired distribution
- * By Bo Ericsson (boeric00@gmail.com)
- */
+/* eslint-disable no-console, no-plusplus, no-multi-spaces, camelcase */
 
-/* eslint indent: ["error", 2] */
-/* eslint-disable no-console, no-redeclare, no-multi-spaces, camelcase */
+/* eslint-disable max-len */
+/**
+ * array-correl
+ * Version: 0.1.1
+ * Purpose: Generates array with desired correlation coefficient or computes correlation
+ *   coefficient between two arrays
+ * Sources and inspiration:
+ *   http://memory.psych.mun.ca/tech/js/correlation.shtml
+ *   http://stevegardner.net/2012/06/11/javascript-code-to-calculate-the-pearson-correlation-coefficient/
+ *   http://hongqinlab.blogspot.com/2013/11/how-to-generated-correlated-random.html
+ * By Bo Ericsson
+ */
+/* eslint-enable max-len */
 
 const d3 = require('d3');
 
 // Compute correlation coefficient
-// Source: http://memory.psych.mun.ca/tech/js/correlation.shtml
 function getPearsonCorrelation(x, y) {
   let shortestArrayLength = 0;
 
@@ -19,10 +24,12 @@ function getPearsonCorrelation(x, y) {
     shortestArrayLength = x.length;
   } else if (x.length > y.length) {
     shortestArrayLength = y.length;
-    console.error(`x has more items than y, the last ${x.length - shortestArrayLength} item(s) will be ignored`);
+    const ignored = x.length - shortestArrayLength;
+    console.error(`x has more items than y, the last ${ignored} item(s) will be ignored`);
   } else {
     shortestArrayLength = x.length;
-    console.error(`y has more items than x, the last ${y.length - shortestArrayLength} item(s) will be ignored`);
+    const ignored = x.length - shortestArrayLength;
+    console.error(`x has more items than y, the last ${ignored} item(s) will be ignored`);
   }
 
   const xy = [];
@@ -67,7 +74,7 @@ module.exports = {
       { name: 'count',       param: count },
       { name: 'correlation', param: correlation },
       { name: 'mean',        param: mean },
-      { name: 'deviation',   param: deviation }
+      { name: 'deviation',   param: deviation },
     ].forEach((d) => {
       if (d.param !== undefined) {
         if (Number.isNaN(parseFloat(d.param)) || !Number.isFinite(d.param)) {
@@ -84,7 +91,7 @@ module.exports = {
     const data = [];
 
     // Generate correlated numbers
-    // Source: http://www.sitmo.com/article/generating-correlated-random-numbers/
+
     d3.range(count).forEach(() => {
       const x1 = nD();
       const x2 = nD();
@@ -117,7 +124,7 @@ module.exports = {
       for (let i = 0; i < input.length; i++) {
         data.push({
           x: input[i][0],
-          y: input[i][1]
+          y: input[i][1],
         });
       }
     }
@@ -132,12 +139,12 @@ module.exports = {
 
     return {
       r: getPearsonCorrelation(x, y),
-      xDeviation: d3.deviation(data, d => d.x),
-      yDeviation: d3.deviation(data, d => d.y),
-      xMean: d3.mean(data, d => d.x),
-      yMean: d3.mean(data, d => d.y),
-      xExtent: d3.extent(data, d => d.x),
-      yExtent: d3.extent(data, d => d.y),
+      xDeviation: d3.deviation(data, (d) => d.x),
+      yDeviation: d3.deviation(data, (d) => d.y),
+      xMean: d3.mean(data, (d) => d.x),
+      yMean: d3.mean(data, (d) => d.y),
+      xExtent: d3.extent(data, (d) => d.x),
+      yExtent: d3.extent(data, (d) => d.y),
     };
-  }
+  },
 };
