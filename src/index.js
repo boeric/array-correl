@@ -14,16 +14,15 @@
  * By Bo Ericsson
  */
 /* eslint-enable max-len */
+/* global d3 */
 
-// Dependencies
-const { deviation, extent, mean, range } = require('d3-array');
+let d3Lib;
 
-const d3 = {
-  deviation,
-  extent,
-  mean,
-  range,
-};
+try {
+  d3Lib = d3;
+} catch (e) {
+  d3Lib = require('d3-array');
+}
 
 // Constants
 const DEFAULT_CORRELATION = 0.7;
@@ -31,7 +30,7 @@ const DEFAULT_MEAN = 0;
 const DEFAULT_DEVIATION = 1;
 
 (function (exports) {
-  const version = '0.1.1';
+  const version = '1.0.0';
 
   // Compute correlation coefficient
   function getPearsonCorrelation(x, y) {
@@ -127,7 +126,7 @@ const DEFAULT_DEVIATION = 1;
     const data = [];
 
     // Generate correlated numbers
-    d3.range(count).forEach(() => {
+    d3Lib.range(count).forEach(() => {
       const xTemp = nD();
       const yTemp = nD();
       const x = m + d * xTemp;
@@ -174,12 +173,12 @@ const DEFAULT_DEVIATION = 1;
 
     return {
       r: getPearsonCorrelation(x, y),
-      xDeviation: d3.deviation(data, (d) => d.x),
-      yDeviation: d3.deviation(data, (d) => d.y),
-      xExtent: d3.extent(data, (d) => d.x),
-      yExtent: d3.extent(data, (d) => d.y),
-      xMean: d3.mean(data, (d) => d.x),
-      yMean: d3.mean(data, (d) => d.y),
+      xDeviation: d3Lib.deviation(data, (d) => d.x),
+      yDeviation: d3Lib.deviation(data, (d) => d.y),
+      xExtent: d3Lib.extent(data, (d) => d.x),
+      yExtent: d3Lib.extent(data, (d) => d.y),
+      xMean: d3Lib.mean(data, (d) => d.x),
+      yMean: d3Lib.mean(data, (d) => d.y),
     };
   }
 
@@ -187,4 +186,4 @@ const DEFAULT_DEVIATION = 1;
   exports.generate = (count, corr, mean, dev) => generate(count, corr, mean, dev);
   exports.inspect = (input) => inspect(input);
   exports.version = version;
-})(typeof exports === 'undefined' ? this.correl = {} : exports);
+})(typeof exports === 'undefined' ? this.arrayCorrel = {} : exports);
