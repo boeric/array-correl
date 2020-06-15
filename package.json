@@ -1,7 +1,7 @@
 {
   "name": "array-correl",
-  "version": "0.1.1",
-  "description": "Computes correlation coefficient between two arrays, or generates desired distribution",
+  "version": "1.0.0",
+  "description": "Generates array of correlated pairs of numbers, and inspects array of such correlated pairs",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -16,9 +16,10 @@
     "correlated pairs",
     "correlation coefficient",
     "generate distribution",
-    "pair",
+    "pair correlation",
     "pearson",
     "pearson correlation",
+    "pearson correlation coefficient",
     "random"
   ],
   "author": {

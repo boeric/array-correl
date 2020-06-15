@@ -4,7 +4,7 @@
 /* eslint-disable max-len */
 /**
  * array-correl
- * Version: 0.1.1
+ * Version: 1.0.0
  * Purpose: Generates an array of correlated pairs of numbers, and inspects array with pair-wise numbers
  * Sources and inspiration:
  *   http://memory.psych.mun.ca/tech/js/correlation.shtml
