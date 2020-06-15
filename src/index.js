@@ -4,7 +4,7 @@
 /* eslint-disable max-len */
 /**
  * array-correl
- * Version: 1.0.0
+ * Version: 1.0.1
  * Purpose: Generates an array of correlated pairs of numbers, and inspects array with pair-wise numbers
  * Sources and inspiration:
  *   http://memory.psych.mun.ca/tech/js/correlation.shtml
@@ -30,7 +30,7 @@ const DEFAULT_MEAN = 0;
 const DEFAULT_DEVIATION = 1;
 
 (function (exports) {
-  const version = '1.0.0';
+  const version = '1.0.1';
 
   // Compute correlation coefficient
   function getPearsonCorrelation(x, y) {
