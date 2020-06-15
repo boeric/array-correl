@@ -1,12 +1,10 @@
 ## array-correl
 
-###Installation
+### Installation
 
 `npm install array-correl`
 
 ### Generate
-
-array-correl.**generate**(count, [correlation, [mean, [deviation]]])
 
 The **generate** method generates an array of length **count** with correlated sets of numbers in the `{ x: xValue, y: yValue }` format. Optionally, the following parameters can be specified:
 
@@ -16,13 +14,15 @@ The **generate** method generates an array of length **count** with correlated s
 
 If the correlation coefficient is not specified, it defaults to 0.7; if mean is not specified, it defaults to 0; if deviation is not specified, it defaults to 1.
 
-#### Generate Errors
+#### API
+
+array-correl.**generate**(count, [correlation, [mean, [deviation]]]);
+
+#### Errors
 
 If no **count** argument is passed, a **ReferenceError** is thrown. If any passed argument is **not a number** (or cannot be coerced to a number), a **TypeError** is thrown.
 
 ### Inspect
-
-array-correl.**inspect**(array)
 
 The **inspect** method analyzes the supplied array and returns several statistics measures. The format of the input array must be one of the following:
 
@@ -36,7 +36,11 @@ The function returns the following parameters in a JS object:
 - The mean of each of the x and y data series
 - The extent (min and max) of each of the x and y data series
 
-#### Inspect Errors
+#### API
+
+array-correl.**inspect**(array);
+
+#### Errors
 
 If no **array** argument is passed, a **ReferenceError** is thrown. If the passed array doesn't contain either two-element arrays or objects with x and y properties, a **TypeError** is thrown.
 
