@@ -1,4 +1,4 @@
-1.0.0 – 2020-06-14
+1.0.0 – 2020-06-14 – 97d9844c06a8854818d11dc16cc54d7db258b45f
 - Added node.js and html5 example uses
 - Added local computation of normal distribution
 - Removed d3
