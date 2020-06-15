@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>array-correl demo</title>
+  <script src="https://d3js.org/d3.v5.js"></script>
+<!--
+  <script src="https://cdn.jsdelivr.net/npm/array-correl/src/index.js"></script>
+-->
+  <script src="../src/index.js"></script>
+  <script defer>
+    const { generate, inspect, version } = this.arrayCorrel;
+
+    // Log version
+    console.log(`array-correl version: ${version}`);
+
+    // Define inputs to the generate method
+    const count = 10000;
+    const correlation = 0.8;
+    const mean = 100;
+    const deviation = 1;
+
+    // Log inputs
+    console.log('Inputs to generate:');
+    console.log(`  count: ${count}`);
+    console.log(`  correlation: ${correlation}`);
+    console.log(`  mean: ${mean}`);
+    console.log(`  deviation: ${deviation}`);
+
+    // Create an array with values of correlated pairs of numbers
+    const array = generate(count, correlation, mean, deviation);
+
+    console.log('First 10 correlated pairs:')
+    // Log the first 10 array elements
+    for (let i = 0; i < 10; i++) {
+      console.log(`  ${JSON.stringify(array[i])}`);
+    }
+
+    // Inspect the array
+    const result = inspect(array);
+    console.log(`Output of inspect: \n${JSON.stringify(result, null, 2)}`);
+  </script>
+</head>
+<body>
+  <div>array-correl</div>
+  <div>Please see console for output</div>
+</body>
+</html>
