@@ -121,3 +121,11 @@ Example output:
   }
 */
 ```
+
+### Test
+
+Run the test suite like so:
+
+```
+npm run test
+```
