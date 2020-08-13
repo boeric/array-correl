@@ -28,7 +28,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "d3-array": "^2.4.0"
+    "d3-array": "^2.5.0"
   },
   "devDependencies": {
     "chai": "latest",
