@@ -1,3 +1,6 @@
+[![NPM package][npm-img]][npm-url]
+[![Build Size][build-size-img]][build-size-url]
+
 ## array-correl
 
 ### Installation
