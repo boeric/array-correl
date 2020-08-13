@@ -3,6 +3,8 @@
 
 ## array-correl
 
+Generates array of correlated pairs of numbers with desired mean and deviation. It also inspects an array of such correlated pairs and returns the Pearson correlation coefficient, the deviation, mean and extent (min and max)
+
 ### Installation
 
 `npm install array-correl`
