@@ -134,3 +134,8 @@ Run the test suite like so:
 ```
 npm run test
 ```
+
+[npm-img]: https://img.shields.io/npm/v/array-correl.svg
+[npm-url]: https://npmjs.org/package/array-correl
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/array-correl.svg
+[build-size-url]: https://bundlephobia.com/result?p=array-correl
